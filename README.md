@@ -1,71 +1,88 @@
-# Steps to run the codebase 
+# Bank App Metacrafters
 
-$ npm install
-$ npm start
+A simple Ethereum-based bank application smart contract with a React frontend for interacting with the contract.
 
-navigate browser to localhost:3000
+## Description
 
------------------------------
-## Tech Stack
+The "Bank App Metacrafters" project consists of a Solidity smart contract called "BankApp," which provides basic banking functionality on the Ethereum blockchain. Users can create bank accounts, deposit and withdraw funds, and check their account balances using the contract. The project also includes a React frontend that enables users to interact with the smart contract seamlessly.
 
-React Js
-Solidity
+## Getting Started
 
-## Available Scripts
+### Installing
 
-In the project directory, you can run:
+To run the project locally, follow these steps:
 
-### `npm start`
+1. Clone the repository from GitHub: [Bank App Metacrafters Repo](https://github.com/gautham2k3/ETH-AVAX_Mod-2_Project/).
+2. Navigate to the project directory on your machine.
 
-Runs the app in the development mode.\
+### Executing program
+
+1. Make sure you have [MetaMask](https://metamask.io/) installed in your web browser.
+2. Start the development server for the React frontend:
+
+```bash
+npm install
+npm start
+```
+
+3. Connect your MetaMask wallet to the application by clicking the "Connect Wallet" button.
+
+## Help
+
+If you encounter any issues while running the application, try the following:
+
+1. Make sure MetaMask is properly installed and set up in your web browser.
+2. Check if you are connected to the correct Ethereum network (localhost).
+3. Ensure you have enough funds in your MetaMask wallet to perform transactions on the Ethereum blockchain.
+
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.\
-You will also see any lint errors in the console.
+You will also see any lint errors in the console
 
-### `npm run build`
+## Function Descriptions
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### `connectWalletHandler`
 
-# Structure of files in the codebase
+The `connectWalletHandler` function is responsible for establishing a connection with the MetaMask wallet. When users click the "Connect Wallet" button in the frontend, this function is triggered, enabling them to interact securely with the application using their Ethereum addresses.
 
-src Folder -
-    Contracts - 
-        BankApp.sol - You can view the smartcontract used in this code 
-        bank_app_abi.json - The abi file of the smartcontract.
+### `accountChangedHandler`
 
-The smart contract is deployed on Test BSC Network.
+The `accountChangedHandler` function comes into play when there is a change in the connected MetaMask account. It updates the default Ethereum address in the frontend, allowing seamless communication with the smart contract using the new account.
 
-### Contract Address - 0x59eFE99aA926a79edEA31F7ED3b2661b1F9e2F62
+### `chainChangedHandler`
 
-## Flow of smart contract
+The `chainChangedHandler` function is triggered when there is a change in the selected blockchain network within the MetaMask wallet. It ensures that the application adapts to the new network settings and continues to function smoothly.
 
-1.Firstly connect your wallet by clicking on connectwallet button(Make sure you have test BNB in your wallet).
-2.You need to create the account by clicking on createAccount  button
-3.You can check whether your account is listed in the network by clicking on checkAccountExists Button
-4.Next you can deposit the balance into your account by entering the number in the textbox.
-5.You can check the balance in the bank account using Account Balance button.
-6.You can transfer your funds in the bank account to another bank account(Make sure that account is also listed in the network)
-7.You can withdraw funds using Withdraw button.
+### `updateEthers`
 
+The `updateEthers` function plays a crucial role in facilitating communication between the application, the deployed smart contract, and the MetaMask wallet's provider network. By utilizing the Web3Provider and Signer from ethers.js library, this function establishes the necessary connections for smooth data exchange between the frontend and the smart contract.
 
+### `createAccount`
 
-## In App.js you can find all these functions
+The `createAccount` function enables users to create a bank account within the Bank Dapp. When users trigger this function, a new account will be registered in the bank, allowing them to deposit, withdraw, and transfer funds securely.
 
-connectWalletHandler - For connecting the metamask wallet
-AccoutChangedHandler - Chainging account from metamask can cause this function to work
-chainChangedHandler - Chainging the chain network in the metamask can cause this function to work
-updateEthers - This function helps in communicating with the abi,deployed smart contract and the provider network of the metamask
+### `checkAccountExists`
 
-### `let tempProvider = new ethers.providers.Web3Provider(window.ethereum);`
-###	`let tempSigner = tempProvider.getSigner();`
-### `let tempContract = new ethers.Contract(contractAddress, simple_token_abi, tempSigner)` - These are the steps for integrating Smartcontract with the Frontend.
+The `checkAccountExists` function allows users to verify if their account is listed within the Bank Dapp. By invoking this function, users can confirm the existence of their account before proceeding with transactions.
 
-createAccount - Creates the Account in the Bank Dapp
-checkAccountExists - Checks if the Account is listed in the Dapp
-AccountBalance - Checks the balance of the account in the Bank
-DepositBalance - For depositing the balance from your metamask wallet account to bank account
-WithdrawBalance - For Withdrawing the balance from your bank account to metamask wallet address 
-TransferHandler -For transferring the funds between accounts in the bank. Make sure both the banks are listed in the network.
+### `accountBalance`
 
+The `accountBalance` function enables users to check the balance of their bank account. Upon calling this function, the application communicates with the smart contract to fetch and display the current balance associated with the user's account.
+
+### `depositBalance`
+
+The `depositBalance` function facilitates the process of depositing funds from the user's MetaMask wallet into their bank account. By specifying the deposit amount, users can initiate the transaction to increase their account balance.
+
+### `withdrawBalance`
+
+The `withdrawBalance` function allows users to withdraw funds from their bank account to their MetaMask wallet address. Users specify the withdrawal amount, and the application processes the request, deducting the amount from the account balance and transferring it to the designated wallet address.
+
+## Authors
+
+- Gautham 
+- bgautham27@gmail.com
+
+## License
+
+This project is licensed under the MIT License.
